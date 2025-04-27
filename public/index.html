@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FURIA ESPORTS - Torcida Oficial</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    /* Reset e Variáveis */
+    :root {
+      --preto: #000000;
+      --branco: #FFFFFF;
+      --cinza-escuro: #1A1A1A;
+      --cinza-claro: #E5E5E5;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif;
+      background-color: var(--preto);
+      color: var(--branco);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+
+    /* Tipografia */
+    @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700&display=swap');
+    
+    h1, h2, h3 {
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+    
+    /* Header */
+    header {
+      background-color: var(--preto);
+      padding: 20px 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: fixed;
+      width: 100%;
+      z-index: 100;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .logo img {
+      height: 40px;
+
+    }
+    
+    .logo-text {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--branco);
+      text-transform: uppercase;
+    }
+    
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 30px;
+    }
+    
+    nav ul li a {
+      color: var(--branco);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.1rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      position: relative;
+      transition: all 0.3s ease;
+    }
+    
+    nav ul li a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--branco);
+      transition: width 0.3s ease;
+    }
+    
+    nav ul li a:hover::after {
+      width: 100%;
+    }
+    
+    /* Hero Section */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 0 10%;
+      position: relative;
+      margin-top: 80px;
+      background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                  url('https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+      background-size: cover;
+      background-position: center;
+    }
+    
+    .hero-content {
+      max-width: 600px;
+    }
+    
+    .hero h1 {
+      font-size: 4.5rem;
+      line-height: 1;
+      margin-bottom: 20px;
+      color: var(--branco);
+    }
+    
+    .hero p {
+      font-size: 1.2rem;
+      line-height: 1.6;
+      margin-bottom: 40px;
+      color: var(--cinza-claro);
+      max-width: 500px;
+    }
+    
+    .hero-buttons {
+      display: flex;
+      gap: 20px;
+    }
+    
+    .btn {
+      padding: 15px 35px;
+      border-radius: 30px;
+      font-weight: 700;
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .btn-primary {
+      background: var(--branco);
+      color: var(--preto);
+      border: 2px solid var(--branco);
+    }
+    
+    .btn-primary:hover {
+      background: transparent;
+      color: var(--branco);
+    }
+    
+    .btn-secondary {
+      background: transparent;
+      color: var(--branco);
+      border: 2px solid var(--branco);
+    }
+    
+    .btn-secondary:hover {
+      background: var(--branco);
+      color: var(--preto);
+    }
+    
+    /* Chatbot */
+    .chatbot-container {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      z-index: 1000;
+    }
+    
+    .chatbot-btn {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      background: var(--branco);
+      color: var(--preto);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      box-shadow: 0 5px 25px rgba(0, 0, 0, 0.3);
+      transition: all 0.3s ease;
+      font-size: 24px;
+    }
+    
+    .chatbot-btn:hover {
+      transform: scale(1.1);
+    }
+    
+    .chatbot-window {
+      position: absolute;
+      bottom: 90px;
+      right: 0;
+      width: 350px;
+      height: 500px;
+      background: var(--cinza-escuro);
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      overflow: hidden;
+      transform: scale(0);
+      transform-origin: bottom right;
+      transition: transform 0.3s ease;
+      opacity: 0;
+    }
+    
+    .chatbot-window.active {
+      transform: scale(1);
+      opacity: 1;
+    }
+    
+    .chatbot-header {
+      padding: 15px 20px;
+      background: var(--branco);
+      color: var(--preto);
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
+    
+    .chatbot-messages {
+      height: calc(100% - 120px);
+      padding: 20px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    
+    .message {
+      max-width: 80%;
+      padding: 12px 15px;
+      border-radius: 15px;
+      font-size: 0.9rem;
+      line-height: 1.4;
+      position: relative;
+      animation: fadeIn 0.3s ease;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .bot-message {
+      background: rgba(255, 255, 255, 0.1);
+      border-bottom-left-radius: 5px;
+      align-self: flex-start;
+      color: var(--branco);
+    }
+    
+    .user-message {
+      background: var(--branco);
+      border-bottom-right-radius: 5px;
+      align-self: flex-end;
+      color: var(--preto);
+    }
+    
+    .chatbot-input {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      padding: 15px;
+      background: var(--cinza-escuro);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      gap: 10px;
+    }
+    
+    .chatbot-input input {
+      flex: 1;
+      padding: 12px 15px;
+      border-radius: 30px;
+      border: none;
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--branco);
+      font-size: 0.9rem;
+      outline: none;
+    }
+    
+    .chatbot-input button {
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      background: var(--branco);
+      color: var(--preto);
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    /* Responsivo */
+    @media (max-width: 1200px) {
+      .hero h1 {
+        font-size: 3.5rem;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      header {
+        padding: 15px 5%;
+      }
+      
+      nav ul {
+        display: none;
+      }
+      
+      .hero {
+        padding: 0 5%;
+        text-align: center;
+        justify-content: center;
+      }
+      
+      .hero-content {
+        max-width: 100%;
+      }
+      
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+      
+      .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .chatbot-container {
+        bottom: 20px;
+        right: 20px;
+      }
+      
+      .chatbot-btn {
+        width: 60px;
+        height: 60px;
+        font-size: 20px;
+      }
+      
+      .chatbot-window {
+        width: 300px;
+        height: 450px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="logo">
+      <img src="img/furialogo1" alt="FURIA Logo">
+      <div class="logo-text">FURIA</div>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="#">Início</a></li>
+        <li><a href="#">Time</a></li>
+        <li><a href="#">Jogos</a></li>
+        <li><a href="#">Mídia</a></li>
+        <li><a href="#">Contato</a></li>
+      </ul>
+    </nav>
+  </header>
+  
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>DOMINE O JOGO</h1>
+      <p>O Time da Fúria representa a excelência no cenário competitivo de CS:GO. Com nossa pantera como símbolo, caçamos a vitória em cada partida.</p>
+      <div class="hero-buttons">
+        <a href="https://t.me/PanteraRush_bot" target="_blank" class="btn btn-primary">
+          <i class="fab fa-telegram"></i> Bot no Telegram
+        </a>
+        <a href="#" class="btn btn-secondary">
+          <i class="fas fa-users"></i> Conheça o Time
+        </a>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Chatbot -->
+  <div class="chatbot-container">
+    <div class="chatbot-btn" id="chatbotButton">
+      <i class="fas fa-robot"></i>
+    </div>
+    <div class="chatbot-window" id="chatbotWindow">
+      <div class="chatbot-header">
+        <i class="fas fa-robot"></i>
+        Capitão Pantera - Assistente
+      </div>
+      <div class="chatbot-messages" id="chatbotMessages">
+        <div class="message bot-message">
+          Grrrr! Eu sou o Capitão Pantera, seu guia na Fúria!
+        </div>
+        <div class="message bot-message">
+          Posso te direcionar para o bot oficial no Telegram ou te informar sobre estratégias e jogos do time.
+        </div>
+      </div>
+      <div class="chatbot-input">
+        <input type="text" id="userInput" placeholder="Digite sua mensagem..." autocomplete="off">
+        <button id="sendMessage">
+          <i class="fas fa-paper-plane"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Chatbot
+    const chatbotButton = document.getElementById('chatbotButton');
+    const chatbotWindow = document.getElementById('chatbotWindow');
+    const userInput = document.getElementById('userInput');
+    const sendButton = document.getElementById('sendMessage');
+    const messagesContainer = document.getElementById('chatbotMessages');
+    
+    let isChatOpen = false;
+    
+    chatbotButton.addEventListener('click', toggleChat);
+    sendButton.addEventListener('click', sendMessage);
+    userInput.addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        sendMessage();
+      }
+    });
+    
+    function toggleChat() {
+      isChatOpen = !isChatOpen;
+      chatbotWindow.classList.toggle('active', isChatOpen);
+      
+      if (isChatOpen) {
+        userInput.focus();
+      }
+    }
+    
+    function sendMessage() {
+      const message = userInput.value.trim();
+      
+      if (message) {
+        // Adiciona mensagem do usuário
+        addMessage(message, 'user-message');
+        userInput.value = '';
+        
+        // Resposta do bot
+        setTimeout(() => {
+          const botResponse = getBotResponse(message);
+          addMessage(botResponse, 'bot-message');
+        }, 500);
+      }
+    }
+    
+    function addMessage(text, className) {
+      const messageElement = document.createElement('div');
+      messageElement.classList.add('message', className);
+      messageElement.textContent = text;
+      messagesContainer.appendChild(messageElement);
+      messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    }
+    
+    function getBotResponse(message) {
+      const lowerMessage = message.toLowerCase();
+      
+      if (lowerMessage.includes('telegram') || lowerMessage.includes('bot')) {
+        return "Grrr! Acesse nosso esconderijo no Telegram: https://t.me/PanteraRush_bot";
+      } else if (lowerMessage.includes('jogo') || lowerMessage.includes('partida')) {
+        return "Próxima caçada da Fúria em breve! Fique atento às nossas redes sociais para não perder!";
+      } else if (lowerMessage.includes('time') || lowerMessage.includes('elenco')) {
+        return "Nossa alcateia de CS:GO tem os melhores caçadores do cenário. Vamos dominar a selva!";
+      } else if (lowerMessage.includes('pantera') || lowerMessage.includes('capitão')) {
+        return "Grrrr! Eu sou o Capitão Pantera, líder virtual da torcida Fúria! Como posso te ajudar?";
+      } else {
+        const randomResponses = [
+          "Grrr! A Fúria nunca recua! Pergunte sobre nossos jogos ou estratégias!",
+          "A selva é nossa! #VAMOSFURIA",
+          "Não esqueça de acompanhar nossas caçadas e rugir muito!",
+          "Grrr! Confira nossas redes sociais para conteúdo exclusivo da alcateia!"
+        ];
+        return randomResponses[Math.floor(Math.random() * randomResponses.length)];
+      }
+    }
+  </script>
+</body>
+</html>

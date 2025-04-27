@@ -1,0 +1,21 @@
+{
+  "name": "furia-bot",
+  "version": "1.0.0",
+  "description": "Bot Telegram oficial para torcida da FURIA com status ao vivo de jogos.",
+  "main": "bot/index.js",
+  "author": "Seu Nome",
+  "license": "MIT",
+  "scripts": {
+    "start": "node bot/index.js",
+    "test": "jest"
+  },
+  "dependencies": {
+    "axios": "^1.9.0",
+    "express": "^5.1.0",
+    "node-fetch": "^3.3.2",
+    "telegraf": "^4.12.2"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
+}
