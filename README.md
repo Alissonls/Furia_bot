@@ -117,4 +117,4 @@ CopiarEditar
 ## 🤖 Autor
 
 Desenvolvido por Alisson para a torcida da FURIA Esports 🐾  
-Telegram: [@PanteraRush_bot](https://t.me/PanteraRush_bot)`enter code here`
+Telegram: [@PanteraRush_bot](https://t.me/PanteraRush_bot)
