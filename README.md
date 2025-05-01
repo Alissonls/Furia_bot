@@ -90,7 +90,7 @@ CopiarEditar
 
 bash
 
-CopiarEditar
+
 
 `npm run start` 
 
@@ -106,9 +106,6 @@ Os testes ainda estão sendo desenvolvidos. O arquivo `bot.test.js` está pronto
 
 ## 💬 Exemplo de interação
 
-yaml
-
-CopiarEditar
 
 `/status  🎮  Partida Encontrada:  FURIA  vs  Team  Liquid  Data:  01/05  -  18h  Local:  São  Paulo  🔥  Estatísticas:  -  yuurih:  24  K  /  10  D  /  4  A  -  arT:  19  K  /  13  D  /  7  A` 
 
