@@ -4,8 +4,11 @@ const axios = require('axios');
 const express = require('express');
 const path = require('path');
 
-// Token oficial do @PanteraRush_bot
-const bot = new Telegraf('7812411873:AAFGTTrxC5JFYWvSO1hKExqv243hJXwxYbQ');
+// Carregar variáveis de ambiente
+require('dotenv').config();
+
+// Inicializar o bot
+const bot = new Telegraf(process.env.BOT_TOKEN);
 
 // Função auxiliar para gerar estatísticas realistas
 function gerarEstatisticasJogador() {
@@ -114,12 +117,16 @@ bot.command('gritar', gritarCommand);
 bot.command('estatisticas', estatisticasCommand);
 bot.command('noticias', noticiasCommand);
 
-// Start bot
-bot.launch().then(() => logInfo('🤖 Bot da FURIA (PanteraRush) está rodando!'));
+// Start bot (lance o bot de forma assíncrona)
+bot.launch().then(() => {
+  console.log('🤖 Bot da FURIA está rodando no Telegram!');
+}).catch((err) => {
+  console.error('Erro ao rodar o bot:', err);
+});
 
 // Landing page Express
 const app = express();
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public')));  // Correção aqui: fechando parênteses
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
