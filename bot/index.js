@@ -97,7 +97,7 @@ async function noticiasCommand(ctx) {
     "🐆 *FalleN garante clutch histórico e leva a torcida à loucura!*",
     "📢 *Novo coach será anunciado em breve, diz CEO da FURIA!*",
     "💣 *KSCERATO ultrapassa 2000 kills em eventos Tier-S!*",
-    "📈 *Equipe registra melhor desempenho no ano com 83% de vitórias!*",
+    "📈 *Equipe registra melhor desempenho no ano com 76% de vitórias!*",
   ];
   const noticia = noticias[Math.floor(Math.random() * noticias.length)];
   await ctx.reply(noticia, { parse_mode: 'Markdown' });
