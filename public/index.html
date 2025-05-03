@@ -26,11 +26,16 @@
                     },
                     animation: {
                         'fade-in': 'fadeIn 0.3s ease-in-out',
+                        'bounce': 'bounce 1s infinite'
                     },
                     keyframes: {
                         fadeIn: {
                             '0%': { opacity: '0', transform: 'translateY(10px)' },
                             '100%': { opacity: '1', transform: 'translateY(0)' }
+                        },
+                        bounce: {
+                            '0%, 100%': { transform: 'translateY(-5px)' },
+                            '50%': { transform: 'translateY(0)' }
                         }
                     }
                 }
@@ -48,6 +53,17 @@
         }
         .hero-overlay {
             background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8));
+        }
+        .typing-cursor {
+            display: inline-block;
+            width: 8px;
+            height: 16px;
+            background: #FFD700;
+            animation: blink 1s infinite;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
         }
     </style>
 </head>
@@ -125,7 +141,7 @@
             <i class="fas fa-robot text-2xl"></i>
         </button>
         
-        <div id="chatbotWindow" class="absolute bottom-20 right-0 w-80 h-96 bg-furia-gray-dark rounded-lg shadow-xl border border-furia-gray-medium transform scale-0 origin-bottom-right transition-transform duration-300 opacity-0">
+        <div id="chatbotWindow" class="absolute bottom-20 right-0 w-80 h-96 bg-furia-gray-dark rounded-lg shadow-xl border border-furia-gray-medium transform scale-0 opacity-0 transition-all duration-300 origin-bottom-right">
             <div class="bg-furia-white text-furia-black p-4 rounded-t-lg flex items-center gap-2 font-bold">
                 <i class="fas fa-robot"></i>
                 Capitão Pantera - Assistente
@@ -151,7 +167,6 @@
     </div>
 
     <script>
-        // Chatbot
         document.addEventListener('DOMContentLoaded', function() {
             const chatbotButton = document.getElementById('chatbotButton');
             const chatbotWindow = document.getElementById('chatbotWindow');
@@ -160,46 +175,92 @@
             const messagesContainer = document.getElementById('chatbotMessages');
             
             let isChatOpen = false;
-            
-            // Event Listeners
-            chatbotButton.addEventListener('click', toggleChat);
+            let userName = '';
+            let interactionCount = 0;
+            let lastInteractionType = '';
+            const userPreferences = {
+                favoritePlayer: '',
+                wantsUpdates: false
+            };
+
+            // Função corrigida para alternar o chat
+            function toggleChat(e) {
+                if(e) e.stopPropagation();
+                
+                isChatOpen = !isChatOpen;
+                
+                if (isChatOpen) {
+                    // Mostra o chat com transição suave
+                    chatbotWindow.classList.remove('scale-0', 'opacity-0');
+                    chatbotWindow.classList.add('scale-100', 'opacity-100');
+                    userInput.focus();
+                    
+                    // Mensagem inicial dinâmica
+                    if (interactionCount === 0) {
+                        setTimeout(() => {
+                            addMessage("🐯 GRRRR! EU SOU O CAPITÃO PANTERA!", 'bot-message');
+                            setTimeout(() => {
+                                addMessage("Vamos dominar o jogo juntos! O que você quer saber?", 'bot-message');
+                            }, 500);
+                        }, 300);
+                    }
+                } else {
+                    // Esconde o chat com transição suave
+                    chatbotWindow.classList.remove('scale-100', 'opacity-100');
+                    chatbotWindow.classList.add('scale-0', 'opacity-0');
+                }
+                
+                interactionCount++;
+            }
+
+            // Event listener para o botão do chat
+            chatbotButton.addEventListener('click', function(e) {
+                toggleChat(e);
+            });
+
+            // Fechar ao clicar fora do chat
+            document.addEventListener('click', function(e) {
+                if (isChatOpen && 
+                    !chatbotWindow.contains(e.target) && 
+                    e.target !== chatbotButton) {
+                    toggleChat(e);
+                }
+            });
+
+            // Enviar mensagem ao clicar no botão
             sendButton.addEventListener('click', sendMessage);
+
+            // Enviar mensagem ao pressionar Enter
             userInput.addEventListener('keypress', function(e) {
                 if (e.key === 'Enter') {
                     sendMessage();
                 }
             });
-            
-            // Funções
-            function toggleChat() {
-                isChatOpen = !isChatOpen;
-                if (isChatOpen) {
-                    chatbotWindow.classList.remove('scale-0', 'opacity-0');
-                    chatbotWindow.classList.add('scale-100', 'opacity-100');
-                    userInput.focus();
-                } else {
-                    chatbotWindow.classList.remove('scale-100', 'opacity-100');
-                    chatbotWindow.classList.add('scale-0', 'opacity-0');
+
+            // Animação do botão ao passar o mouse
+            chatbotButton.addEventListener('mouseenter', function() {
+                if (!isChatOpen) {
+                    this.classList.add('animate-bounce');
+                    setTimeout(() => this.classList.remove('animate-bounce'), 1000);
                 }
-            }
-            
+            });
+
             function sendMessage() {
                 const message = userInput.value.trim();
                 
                 if (message) {
-                    // Adiciona mensagem do usuário
                     addMessage(message, 'user-message');
                     userInput.value = '';
                     
-                    // Resposta do bot
+                    // Resposta com delay natural
                     setTimeout(() => {
                         const botResponse = getBotResponse(message);
                         addMessage(botResponse, 'bot-message');
-                    }, 500);
+                    }, 300 + Math.random() * 500);
                 }
             }
-            
-            function addMessage(text, className) {
+
+            function addMessage(text, className, isHTML = false) {
                 const messageElement = document.createElement('div');
                 messageElement.classList.add('max-w-xs', 'p-3', 'rounded-lg', 'animate-fade-in');
                 
@@ -209,11 +270,17 @@
                     messageElement.classList.add('bg-furia-white', 'text-furia-black', 'ml-auto', 'rounded-br-none');
                 }
                 
-                messageElement.textContent = text;
+                if (isHTML) {
+                    messageElement.innerHTML = text;
+                } else {
+                    messageElement.textContent = text;
+                }
+                
                 messagesContainer.appendChild(messageElement);
                 messagesContainer.scrollTop = messagesContainer.scrollHeight;
+                return messageElement;
             }
-            
+
             function getBotResponse(message) {
                 const msg = message.toLowerCase();
 
