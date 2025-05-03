@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FURIA | Últimos Jogos</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Space Grotesk"', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #000;
+        }
+        .match-card {
+            background: linear-gradient(145deg, #111111 0%, #000000 100%);
+            border: 1px solid #333;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .match-card:hover {
+            transform: translateY(-3px);
+            border-color: #fff;
+            box-shadow: 0 10px 25px -5px rgba(255, 255, 255, 0.1);
+        }
+        .score-win {
+            background: linear-gradient(90deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 100%);
+        }
+        .score-loss {
+            background: linear-gradient(90deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 100%);
+        }
+        .divider {
+            height: 1px;
+            background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, #fff 50%, rgba(255, 255, 255, 0) 100%);
+        }
+    </style>
+</head>
+<body class="bg-black text-gray-100 font-sans">
+    <section id="jogos" class="py-24 relative overflow-hidden">
+        <!-- Efeito de luz sutil -->
+        <div class="absolute inset-0 pointer-events-none">
+            <div class="absolute top-0 left-0 w-64 h-64 rounded-full bg-white opacity-5 blur-3xl"></div>
+        </div>
+        
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <!-- Cabeçalho -->
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-16">
+                <div class="mb-8 md:mb-0">
+                    <div class="flex items-center gap-4 mb-6">
+                        <img src="img/furialogo1.png" 
+                             alt="FURIA Esports" 
+                             class="h-14">
+                        <span class="text-sm font-bold bg-gray-800 px-4 py-1 rounded-full border border-gray-700">CS2</span>
+                    </div>
+                    <h2 class="text-5xl font-bold">
+                        <span class="text-white">ÚLTIMOS JOGOS</span>
+                    </h2>
+                    <div class="divider my-4"></div>
+                    <p class="text-gray-400 max-w-lg">Acompanhe as performances mais recentes da FURIA no cenário competitivo</p>
+                </div>
+                <div class="bg-black border border-gray-700 rounded-xl px-6 py-4">
+                    <span class="text-sm font-semibold text-gray-400 uppercase tracking-wider">Temporada 2025</span>
+                    <div class="flex gap-4 mt-3">
+                        <div class="text-center">
+                            <p class="text-3xl font-bold text-green-500">5</p>
+                            <p class="text-xs text-gray-400">Vitórias</p>
+                        </div>
+                        <div class="text-center">
+                            <p class="text-3xl font-bold text-red-500">2</p>
+                            <p class="text-xs text-gray-400">Derrotas</p>
+                        </div>
+                        <div class="text-center">
+                            <p class="text-3xl font-bold text-white">71%</p>
+                            <p class="text-xs text-gray-400">Win rate</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Grid de Jogos -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Jogo 1 - Vitória -->
+                <div class="match-card rounded-xl p-6">
+                    <div class="flex justify-between items-start mb-6">
+                        <div>
+                            <h3 class="text-xl font-bold text-white">FURIA vs NAVI</h3>
+                            <p class="text-gray-400 text-sm mt-1">28/04/2025 - ESL Pro League</p>
+                        </div>
+                        <span class="text-xs font-bold px-3 py-1 rounded-full bg-gray-900 border border-gray-700 text-white">BO3</span>
+                    </div>
+                    
+                    <div class="space-y-3 mb-6">
+                        <!-- Time FURIA -->
+                        <div class="flex items-center justify-between p-3 rounded-lg score-win">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center border border-gray-700">
+                                    <span class="font-bold text-white">F</span>
+                                </div>
+                                <span class="font-medium text-white">FURIA</span>
+                            </div>
+                            <span class="font-bold text-white bg-green-500 px-3 py-1 rounded-full">2</span>
+                        </div>
+                        
+                        <!-- Time NAVI -->
+                        <div class="flex items-center justify-between p-3 rounded-lg">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-full bg-gray-900 flex items-center justify-center border border-gray-700">
+                                    <span class="font-bold text-white">N</span>
+                                </div>
+                                <span class="font-medium text-white">NAVI</span>
+                            </div>
+                            <span class="font-bold text-white">1</span>
+                        </div>
+                    </div>
+                    
+                    <div class="pt-4 border-t border-gray-700">
+                        <div class="flex justify-between items-center">
+                            <div class="flex gap-2">
+                                <span class="text-xs px-2 py-1 bg-gray-900 rounded text-gray-300 border border-gray-700">Mirage</span>
+                                <span class="text-xs px-2 py-1 bg-gray-900 rounded text-gray-300 border border-gray-700">Inferno</span>
+                                <span class="text-xs px-2 py-1 bg-gray-900 rounded text-gray-300 border border-gray-700">Nuke</span>
+                            </div>
+                            <a href="#" class="text-white hover:text-gray-300 text-sm font-bold transition">
+                                Ver análise →
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Jogo 2 - Derrota -->
+                <div class="match-card rounded-xl p-6">
+                    <div class="flex justify-between items-start mb-6">
+                        <div>
+                            <h3 class="text-xl font-bold text-white">FURIA vs G2</h3>
+                            <p class="text-gray-400 text-sm mt-1">25/04/2025 - Blast Premier</p>
+                        </div>
+                        <span class="text-xs font-bold px-3 py-1 rounded-full bg-gray-900 border border-gray-700 text-white">BO3</span>
+                    </div>
+                    
+                    <div class="space-y-3 mb-6">
+                        <!-- Time FURIA -->
+                        <div class="flex items-center justify-between p-3 rounded-lg score-loss">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center border border-gray-700">
+                                    <span class="font-bold text-white">F</span>
+                                </div>
+                                <span class="font-medium text-white">FURIA</span>
+                            </div>
+                            <span class="font-bold text-white bg-red-500 px-3 py-1 rounded-full">0</span>
+                        </div>
+                        
+                        <!-- Time G2 -->
+                        <div class="flex items-center justify-between p-3 rounded-lg">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-full bg-gray-900 flex items-center justify-center border border-gray-700">
+                                    <span class="font-bold text-white">G</span>
+                                </div>
+                                <span class="font-medium text-white">G2</span>
+                            </div>
+                            <span class="font-bold text-white">2</span>
+                        </div>
+                    </div>
+                    
+                    <div class="pt-4 border-t border-gray-700">
+                        <div class="flex justify-between items-center">
+                            <div class="flex gap-2">
+                                <span class="text-xs px-2 py-1 bg-gray-900 rounded text-gray-300 border border-gray-700">Ancient</span>
+                                <span class="text-xs px-2 py-1 bg-gray-900 rounded text-gray-300 border border-gray-700">Vertigo</span>
+                            </div>
+                            <a href="#" class="text-white hover:text-gray-300 text-sm font-bold transition">
+                                Ver análise →
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Jogo 3 - Vitória -->
+                <div class="match-card rounded-xl p-6">
+                    <div class="flex justify-between items-start mb-6">
+                        <div>
+                            <h3 class="text-xl font-bold text-white">FURIA vs Liquid</h3>
+                            <p class="text-gray-400 text-sm mt-1">22/04/2025 - IEM Katowice</p>
+                        </div>
+                        <span class="text-xs font-bold px-3 py-1 rounded-full bg-gray-900 border border-gray-700 text-white">BO3</span>
+                    </div>
+                    
+                    <div class="space-y-3 mb-6">
+                        <!-- Time FURIA -->
+                        <div class="flex items-center justify-between p-3 rounded-lg score-win">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center border border-gray-700">
+                                    <span class="font-bold text-white">F</span>
+                                </div>
+                                <span class="font-medium text-white">FURIA</span>
+                            </div>
+                            <span class="font-bold text-white bg-green-500 px-3 py-1 rounded-full">2</span>
+                        </div>
+                        
+                        <!-- Time Liquid -->
+                        <div class="flex items-center justify-between p-3 rounded-lg">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-full bg-gray-900 flex items-center justify-center border border-gray-700">
+                                    <span class="font-bold text-white">L</span>
+                                </div>
+                                <span class="font-medium text-white">Liquid</span>
+                            </div>
+                            <span class="font-bold text-white">0</span>
+                        </div>
+                    </div>
+                    
+                    <div class="pt-4 border-t border-gray-700">
+                        <div class="flex justify-between items-center">
+                            <div class="flex gap-2">
+                                <span class="text-xs px-2 py-1 bg-gray-900 rounded text-gray-300 border border-gray-700">Overpass</span>
+                                <span class="text-xs px-2 py-1 bg-gray-900 rounded text-gray-300 border border-gray-700">Nuke</span>
+                            </div>
+                            <a href="#" class="text-white hover:text-gray-300 text-sm font-bold transition">
+                                Ver análise →
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Botão Ver Todos -->
+            <div class="mt-16 text-center">
+                <a href="#" class="inline-flex items-center px-8 py-4 bg-black border-2 border-white rounded-full text-white hover:bg-gray-900 hover:shadow-lg hover:shadow-white/10 transition-all font-bold">
+                    <span>VER TODOS OS JOGOS</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-3" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
