@@ -1,117 +1,162 @@
-# 🐆 PanteraRush_bot - FURIA CS:GO Fan Bot
 
-Bot interativo feito com Node.js e Telegraf para torcedores da FURIA Esports. Traz informações em tempo real e interações personalizadas com a torcida do time de CS:GO. Ideal para fãs que querem acompanhar partidas, estatísticas, gritar com a torcida e receber notícias como se fossem oficiais.
+# 🐆 PanteraRush_bot – FURIA CS:GO Fan Bot
 
-----------
+Bot interativo feito com Node.js e Telegraf para torcedores da **FURIA Esports**. Proporciona interações dinâmicas com a torcida e simula informações como partidas, estatísticas e notícias.
+
+---
 
 ## 🚀 Funcionalidades
 
-### 🎮 Comandos disponíveis
+| Comando         | Descrição                                                                 |
+|-----------------|---------------------------------------------------------------------------|
+| `/start`        | Mensagem de boas-vindas personalizada para fãs da FURIA                   |
+| `/status`       | Simulação da próxima partida com estatísticas realistas                  |
+| `/gritar`       | Grito de torcida aleatório para incentivar o time                         |
+| `/estatisticas` | Estatísticas fictícias dos jogadores da equipe                            |
+| `/noticias`     | Gera uma notícia aleatória como se fosse oficial                          |
 
-Comando
+---
 
-Descrição
+## 🔧 Tecnologias Utilizadas
 
-`/start`
+- Node.js com Express  
+- Telegraf.js (framework para bots do Telegram)  
+- HTML, CSS e JavaScript (Landing Page)  
+- PM2 para gerenciamento em produção  
+- Git + GitHub para versionamento
 
-Mensagem de boas-vindas personalizada para fãs da FURIA
-
-`/status`
-
-Mostra uma simulação da próxima partida da FURIA, com estatísticas reais
-
-`/gritar`
-
-Exibe mensagens de torcida para incentivar o time
-
-`/estatisticas`
-
-Gera estatísticas individuais aleatórias dos jogadores da equipe
-
-`/noticias`
-
-Mostra uma notícia aleatória sobre o time, como se fosse oficial
-
-----------
-
-## 🔧 Tecnologias utilizadas
-
--   **Node.js** com Express
-    
--   **Telegraf.js** (framework para bots do Telegram)
-    
--   **HTML + CSS + JS** (Landing page responsiva com chatbot)
-    
--   **Git + GitHub** para versionamento
-    
-
-----------
+---
 
 ## 🌐 Landing Page
 
+- Inspirada na identidade visual da FURIA  
+- Simulação de chatbot com o “Capitão Pantera”  
+- Acesso direto ao bot via Telegram  
+- Responsivo para mobile e desktop
 
--   Layout inspirado na identidade visual da FURIA
-    
--   Chatbot simulado com "Capitão Pantera", que responde mensagens como se fosse parte da equipe
-    
--   Acesso rápido ao bot no Telegram
-    
--   Totalmente responsivo (desktop e mobile)
-    
+---
 
-----------
+## 🧠 Arquitetura do Projeto
 
-## 🧠 Arquitetura
-
-
+```
 furia-bot/
 ├── bot/
-│   ├── index.js # Inicialização do Telegraf e comandos │   └── commands/
-│       ├── status.js # Simula partidas da FURIA │       ├── gritar.js # Torcida │       ├── estatisticas.js # Stats dos jogadores │       └── noticias.js # Geração aleatória de notícias ├── public/
-│   └── index.html # Landing page com chatbot ├── utils/
-│   └── logger.js # Logger customizado ├── package.json
-└── README.md # Você está aqui` 
+│   ├── index.js          # Inicialização do Telegraf
+│   └── commands/
+│       ├── status.js
+│       ├── gritar.js
+│       ├── estatisticas.js
+│       └── noticias.js
+├── public/
+│   └── index.html        # Landing Page
+├── utils/
+│   └── logger.js
+├── .env                  # Variáveis de ambiente (protegido)
+├── .gitignore
+├── package.json
+└── README.md
+```
 
-----------
+---
 
-## ⚙️ Rodando o projeto
+## ⚙️ Rodando o Projeto
 
-1.  Instale as dependências:
-    
+### 1. Instale as dependências
 
-bash
+```bash
+npm install
+```
 
-CopiarEditar
+### 2. Configure as variáveis de ambiente
 
-`npm install` 
+Crie um arquivo `.env` na raiz e adicione:
 
-2.  Inicie o bot + landing page:
-    
+```env
+BOT_TOKEN=seu_token_aqui
+```
 
-bash
+### 3. Inicie o projeto
 
+```bash
+npm run start
+```
 
+---
 
-`npm run start` 
+## 🔁 Mantendo o Bot Ativo com PM2
 
-> O bot será iniciado no Telegram e a landing page será servida na porta 3000.
+### Instale o PM2 globalmente
 
-----------
+```bash
+npm install -g pm2
+```
 
-## 🧪 Testes
+### Inicie o bot com PM2
 
-Os testes ainda estão sendo desenvolvidos. O arquivo `bot.test.js` está pronto para evoluções com mocks de comandos via Telegraf.
+```bash
+pm2 start "bot/index.js" --name PanteraRush_bot
+```
 
-----------
+### Verifique os processos
 
-## 💬 Exemplo de interação
+```bash
+pm2 list
+```
 
+### Logs em tempo real
 
-`/status  🎮  Partida Encontrada:  FURIA  vs  Team  Liquid  Data:  01/05  -  18h  Local:  São  Paulo  🔥  Estatísticas:  -  yuurih:  24  K  /  10  D  /  4  A  -  arT:  19  K  /  13  D  /  7  A` 
+```bash
+pm2 logs PanteraRush_bot
+```
 
-----------
+### Pausar o bot
+
+```bash
+pm2 stop PanteraRush_bot
+```
+
+### Retomar o bot
+
+```bash
+pm2 restart PanteraRush_bot
+```
+
+### Remover o bot
+
+```bash
+pm2 delete PanteraRush_bot
+```
+
+### Salvar o processo
+
+```bash
+pm2 save
+```
+
+### Inicializar o PM2 junto com o sistema
+
+```bash
+pm2 startup
+```
+> Execute o comando que o PM2 retornar após isso.
+
+---
+
+## 💬 Exemplo de Interação
+
+```
+/status  
+🎮 Partida Encontrada: FURIA vs Team Liquid  
+📅 Data: 01/05 - 18h  
+📍 Local: São Paulo  
+🔥 Estatísticas:
+- yuurih: 24 K / 10 D / 4 A  
+- arT: 19 K / 13 D / 7 A
+```
+
+---
 
 ## 🤖 Autor
 
-Desenvolvido por Alisson para a torcida da FURIA Esports 🐾  
+Desenvolvido por **Alisson Coqueiro** para a torcida da FURIA Esports 🐾  
 Telegram: [@PanteraRush_bot](https://t.me/PanteraRush_bot)

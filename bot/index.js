@@ -104,13 +104,28 @@ async function noticiasCommand(ctx) {
 }
 
 // Comandos
-bot.start((ctx) => ctx.reply(`
-🎮 Bem-vindo, Agente Pantera!
-Use /status para ver o jogo!
-Use /gritar para torcer!
-Use /estatisticas para ver o desempenho individual!
-Use /noticias para novidades da selva!
-`));
+bot.start((ctx) => ctx.replyWithMarkdown(`
+  🐯 *GRRRR! EU SOU O CAPITÃO PANTERA!* 🐾
+  
+  *Bem-vindo à Selva, Furioso!* 💛🖤
+  
+  Aqui é o lugar onde a torcida mais brava do CS:GO se reúne! Eu sou seu guia nessa jornada pela glória da FURIA. Vamos dominar o jogo juntos? 
+  
+  *COMO FUNCIONA ESSA FÚRIA?* 🔥
+  
+  */status* - Quer saber como tá o jogo? É só mandar esse comando que eu te conto TUDO: placar, estatísticas e até como os jogadores tão performando!
+  
+  */gritar* - HORA DO GRITO DE GUERRA! Vamos fazer barulho e mostrar porque a torcida da FURIA é a mais apaixonada! 💥 *FURIA! FURIA! FURIA!*
+  
+  */estatisticas* - Curioso pra saber como tá o KDA do KSCERATO? Ou quantas clutches o FalleN fez? Esse comando te mostra tudo! 📊
+  
+  */noticias* - As últimas novidades quentinhas da selva! Tá por dentro de tudo que rola no time! 📰
+  
+  *MANDA VER, TORCEDOR!* 🚀
+  O que você quer fazer agora? Me diz que eu te guio nessa jornada! 
+  
+  *Lembre-se: PANTERA NÃO RECUA!* 🐾💪
+  `));
 
 bot.command('status', statusCommand);
 bot.command('gritar', gritarCommand);
