@@ -10,7 +10,7 @@ Bot interativo feito com Node.js e Telegraf para torcedores da **FURIA Esports**
 | Comando         | Descrição                                                                 |
 |-----------------|---------------------------------------------------------------------------|
 | `/start`        | Mensagem de boas-vindas personalizada para fãs da FURIA                   |
-| `/status`       | Simulação da próxima partida com estatísticas realistas                  |
+| `/status`       | Simulação da próxima partida com estatísticas realistas                   |
 | `/gritar`       | Grito de torcida aleatório para incentivar o time                         |
 | `/estatisticas` | Estatísticas fictícias dos jogadores da equipe                            |
 | `/noticias`     | Gera uma notícia aleatória como se fosse oficial                          |
